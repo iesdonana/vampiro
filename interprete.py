@@ -26,7 +26,7 @@ def buscar_verbo_primera_palabra(lista):
                 verbo = lista[0]
                 nombre = None
             elif palabra[1] == voc.NOMBRE:
-                verbo = None
+                marcar_error_sintactico()
                 nombre = None
             break
 
@@ -38,4 +38,11 @@ def buscar_nombre_segunda_palabra(lista):
             if palabra[1] == voc.NOMBRE:
                 nombre = lista[1]
             else:
-                verbo = None
+                marcar_error_sintactico()
+
+def marcar_error_sintactico():
+    global verbo
+    verbo = None
+
+def hay_error_sintactico():
+    return verbo is None
