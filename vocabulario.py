@@ -8,6 +8,9 @@ palabras = [
     ['TRAJE', NOMBRE],
     ['CUCHILLO', NOMBRE],
     ['N', VERBO],
+    ['S', VERBO],
+    ['E', VERBO],
+    ['O', VERBO],
     ['LLAVE', NOMBRE],
     ['FIN', VERBO],
 ]
