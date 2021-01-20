@@ -1,9 +1,8 @@
 import interprete
 import localidades
+import jugador
 
-localidad = localidades.localidades[localidades.actual]
-print(localidad[1])
-print(localidad[0])
+jugador.describe_localidad_actual()
 
 while True:
     orden = input('> ')
@@ -13,12 +12,9 @@ while True:
     elif interprete.verbo in ['N', 'S', 'E', 'O']:
         se_ha_movido = False
         for c in localidades.conexiones:
-            if c[0] == localidades.actual and c[1] == interprete.verbo:
+            if c[0] == jugador.localidad_actual and c[1] == interprete.verbo:
                 se_ha_movido = True
-                localidades.actual = c[2]
-                localidad = localidades.localidades[localidades.actual]
-                print(localidad[1])
-                print(localidad[0])
+                jugador.mover_jugador(c[2])
                 break
         if not se_ha_movido:
             print('No hay salida en esa dirección.')

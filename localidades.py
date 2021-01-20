@@ -3,8 +3,6 @@ MITAD_PASILLO = 1
 COCINA = 2
 BIBLIOTECA = 3
 
-actual = VESTIBULO
-
 localidades = {
     VESTIBULO: ['Estás en el vestíbulo del castillo.', 'VESTÍBULO'],
     MITAD_PASILLO: ['Estás en mitad del pasillo.', 'MITAD PASILLO'],
