@@ -9,14 +9,8 @@ while True:
     interprete.interpretar(orden)
     if interprete.hay_error_sintactico():
         print('No entiendo lo que quieres decirme.')
-    elif interprete.verbo() in ['N', 'S', 'E', 'O']:
-        se_ha_movido = False
-        for c in localidades.conexiones:
-            if c[0] == jugador.localidad_actual() and c[1] == interprete.verbo():
-                se_ha_movido = True
-                jugador.mover_jugador(c[2])
-                break
-        if not se_ha_movido:
+    elif interprete.verbo_es_direccion():
+        if not jugador.intentar_mover(interprete.verbo()):
             print('No hay salida en esa dirección.')
     elif interprete.verbo() == 'FIN':
         if interprete.nombre() is None:

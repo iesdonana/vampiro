@@ -27,24 +27,42 @@ def verbo():
     return _verbo
 
 def nombre():
-    """Devuelve el último nombre reconocido"""
+    """Devuelve el último nombre reconocido."""
     return _nombre
 
 def interpretar(orden):
+    """
+    Interpreta la orden del jugador.
+
+    Args:
+        - orden: str => La orden del jugador.
+
+    Returns:
+        - None
+
+    Modifica:
+        - Las variables globales _verbo y _nombre.
+    """
     global _verbo
     global _nombre
-    lista = orden.upper().split()
     _verbo, _nombre = None, None
-    if len(lista) == 0:
-        return
-    if len(lista) == 1:
-        buscar_verbo_primera_palabra(lista)
-        return
-    if len(lista) == 2:
-        buscar_verbo_primera_palabra(lista)
-        buscar_nombre_segunda_palabra(lista)
+    lista = orden.upper().split()
+    if len(lista) >= 1:
+        _buscar_verbo_primera_palabra(lista)
+    if len(lista) >= 2:
+        _buscar_nombre_segunda_palabra(lista)
 
-def buscar_verbo_primera_palabra(lista):
+def marcar_error_sintactico():
+    global _verbo
+    _verbo = None
+
+def hay_error_sintactico():
+    return _verbo is None
+
+def verbo_es_direccion():
+    return voc.es_direccion(_verbo)
+
+def _buscar_verbo_primera_palabra(lista):
     global _verbo
     global _nombre
     for palabra in voc.palabras:
@@ -57,7 +75,7 @@ def buscar_verbo_primera_palabra(lista):
                 _nombre = None
             break
 
-def buscar_nombre_segunda_palabra(lista):
+def _buscar_nombre_segunda_palabra(lista):
     global _verbo
     global _nombre
     for palabra in voc.palabras:
@@ -66,10 +84,3 @@ def buscar_nombre_segunda_palabra(lista):
                 _nombre = lista[1]
             else:
                 marcar_error_sintactico()
-
-def marcar_error_sintactico():
-    global _verbo
-    _verbo = None
-
-def hay_error_sintactico():
-    return _verbo is None

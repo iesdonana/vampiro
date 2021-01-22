@@ -18,3 +18,6 @@ palabras = [
 """
 def tipo_palabra(lexema):
 """
+
+def es_direccion(verbo):
+    return verbo in ['N', 'S', 'E', 'O']
