@@ -1,12 +1,33 @@
+"""
+Se encarga de todo lo relacionado con la interpretación de la
+entrada del jugador.
+
+El módulo almacena el último verbo y el último nombre reconocidos.
+
+El análisis de la entrada del jugador se lleva a cabo en la función
+interpretar.
+"""
+
 import vocabulario as voc
 
 _verbo = None
 _nombre = None
 
 def verbo():
+    """
+    Devuelve el último verbo reconocido.
+
+    Args:
+        - No tiene
+
+    Returns:
+        - El último verbo reconocido, o None si no se
+          ha reconocido ninguno.
+    """
     return _verbo
 
 def nombre():
+    """Devuelve el último nombre reconocido"""
     return _nombre
 
 def interpretar(orden):
