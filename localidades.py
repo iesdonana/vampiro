@@ -6,7 +6,7 @@ BIBLIOTECA = 3
 DESC_CORTA = 0
 DESC_LARGA = 1
 
-localidades = {
+_localidades = {
     VESTIBULO: {
         DESC_CORTA: 'VESTÍBULO',
         DESC_LARGA: 'Estás en el vestíbulo del castillo.',
@@ -25,31 +25,13 @@ localidades = {
     },
 }
 
-def localidad(ident):
-    return localidades[ident]
-
-def corta(loc):
-    return loc[DESC_CORTA]
-
-def larga(loc):
-    return loc[DESC_LARGA]
-
 """
 Cocina --- Mitad pasillo --- Biblioteca
                 |
             Vestíbulo
 """
 
-conexiones = [
-    (VESTIBULO, 'N', MITAD_PASILLO),
-    (MITAD_PASILLO, 'S', VESTIBULO),
-    (MITAD_PASILLO, 'E', BIBLIOTECA),
-    (MITAD_PASILLO, 'O', COCINA),
-    (BIBLIOTECA, 'O', MITAD_PASILLO),
-    (COCINA, 'E', MITAD_PASILLO),
-]
-
-conexiones = {
+_conexiones = {
     VESTIBULO: {
         'N': MITAD_PASILLO
     },
@@ -65,3 +47,16 @@ conexiones = {
         'E': MITAD_PASILLO,
     },
 }
+
+def localidad(ident):
+    return _localidades[ident]
+
+def corta(loc):
+    return loc[DESC_CORTA]
+
+def larga(loc):
+    return loc[DESC_LARGA]
+
+def salida_hacia(localidad_actual, verbo):
+    salidas = _conexiones[localidad_actual]
+    return salidas.get(verbo)

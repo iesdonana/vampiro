@@ -16,8 +16,8 @@ def describe_localidad_actual():
     print(localidades.larga(localidad))
 
 def intentar_mover(verbo):
-    salidas = localidades.conexiones[localidad_actual()]
-    if verbo in salidas:
-        mover_jugador(salidas[verbo])
+    destino = localidades.salida_hacia(localidad_actual(), verbo)
+    if destino is not None:
+        mover_jugador(destino)
         return True
     return False

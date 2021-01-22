@@ -1,5 +1,4 @@
 import interprete
-import localidades
 import jugador
 
 jugador.describe_localidad_actual()
