@@ -1,23 +1,47 @@
-VERBO = 0
-NOMBRE = 1
+PALABRA_VERBO = 0
+PALABRA_NOMBRE = 1
+
+TIPO_PALABRA = 0
+SIGNIF_PALABRA = 1
+
+# Significados:
+COGER = 0
+DEJAR = 1
+TRAJE = 2
+CUCHILLO = 3
 
 palabras = [
-    ['COGER', VERBO],
-    ['COGE', VERBO],
-    ['DEJAR', VERBO],
-    ['TRAJE', NOMBRE],
-    ['CUCHILLO', NOMBRE],
-    ['N', VERBO],
-    ['S', VERBO],
-    ['E', VERBO],
-    ['O', VERBO],
-    ['LLAVE', NOMBRE],
-    ['FIN', VERBO],
+    ['COGER', PALABRA_VERBO, COGER],
+    ['COGE', PALABRA_VERBO, COGER],
+    ['DEJAR', PALABRA_VERBO, DEJAR],
+    ['TRAJE', PALABRA_NOMBRE, TRAJE],
+    ['CUCHILLO', PALABRA_NOMBRE, CUCHILLO],
+    ['NAVAJA', PALABRA_NOMBRE, CUCHILLO],
+    ['N', PALABRA_VERBO],
+    ['S', PALABRA_VERBO],
+    ['E', PALABRA_VERBO],
+    ['O', PALABRA_VERBO],
+    ['LLAVE', PALABRA_NOMBRE],
+    ['FIN', PALABRA_VERBO],
+    ['ACABAR', PALABRA_VERBO],
 ]
 
-"""
-def tipo_palabra(lexema):
-"""
+_coger = {
+    TIPO_PALABRA: PALABRA_VERBO,
+    SIGNIF_PALABRA: COGER,
+}
+
+_cuchillo = {
+    TIPO_PALABRA: PALABRA_NOMBRE,
+    SIGNIF_PALABRA: CUCHILLO,
+}
+
+palabras = {
+    'COGER': _coger,
+    'COGE': _coger,
+    'CUCHILLO': _cuchillo,
+    'NAVAJA': _cuchillo,
+}
 
 def es_direccion(verbo):
     return verbo in ['N', 'S', 'E', 'O']

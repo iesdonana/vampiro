@@ -11,7 +11,7 @@ while True:
     elif interprete.verbo_es_direccion():
         if not jugador.intentar_mover(interprete.verbo()):
             print('No hay salida en esa dirección.')
-    elif interprete.verbo() == 'FIN':
+    elif interprete.verbo() in ['FIN', 'ACABAR']:
         if interprete.nombre() is None:
             print('Hasta luego, Lucas.')
             break
