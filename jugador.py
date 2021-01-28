@@ -1,6 +1,7 @@
 import localidades
+import localidad
 
-_localidad_actual = localidades.VESTIBULO
+_localidad_actual = localidades.localidad(localidades.VESTIBULO)
 
 def localidad_actual():               # getter, selectora
     return _localidad_actual
@@ -11,9 +12,8 @@ def mover_jugador(destino):
     describe_localidad_actual()
 
 def describe_localidad_actual():
-    localidad = localidades.localidad(_localidad_actual)
-    print(localidades.corta(localidad))
-    print(localidades.larga(localidad))
+    print(localidad.corta(_localidad_actual))
+    print(localidad.larga(_localidad_actual))
 
 def intentar_mover(verbo):
     destino = localidades.salida_hacia(localidad_actual(), verbo)

@@ -1,29 +1,34 @@
+import localidad
+import coleccion
+
 VESTIBULO = 0
 MITAD_PASILLO = 1
 COCINA = 2
 BIBLIOTECA = 3
 
-DESC_CORTA = 0
-DESC_LARGA = 1
+_localidades = coleccion.coleccion()
 
-_localidades = {
-    VESTIBULO: {
-        DESC_CORTA: 'VESTÍBULO',
-        DESC_LARGA: 'Estás en el vestíbulo del castillo.',
-    },
-    MITAD_PASILLO: {
-        DESC_LARGA: 'Estás en mitad del pasillo.',
-        DESC_CORTA: 'MITAD PASILLO'
-    },
-    COCINA: {
-        DESC_LARGA: 'Estás en la cocina.',
-        DESC_CORTA: 'COCINA'
-    },
-    BIBLIOTECA: {
-        DESC_LARGA: 'Estás en la biblioteca.',
-        DESC_CORTA: 'BIBLIOTECA'
-    },
+datos_localidad = {
+    VESTIBULO: localidad.localidad(
+        'VESTÍBULO',
+        'Estás en el vestíbulo del castillo.'
+    ),
+    MITAD_PASILLO: localidad.localidad(
+        'Estás en mitad del pasillo.',
+        'MITAD PASILLO'
+    ),
+    COCINA: localidad.localidad(
+        'Estás en la cocina.',
+        'COCINA'
+    ),
+    BIBLIOTECA: localidad.localidad(
+        'Estás en la biblioteca.',
+        'BIBLIOTECA'
+    )
 }
+
+for clave, loc in datos_localidad.items():
+    coleccion.insertar(_localidades, clave, loc)
 
 """
 Cocina --- Mitad pasillo --- Biblioteca
@@ -48,15 +53,14 @@ _conexiones = {
     },
 }
 
-def localidad(ident):
-    return _localidades[ident]
-
-def corta(loc):
-    return loc[DESC_CORTA]
-
-def larga(loc):
-    return loc[DESC_LARGA]
-
 def salida_hacia(localidad_actual, verbo):
     salidas = _conexiones[localidad_actual]
     return salidas.get(verbo)
+
+def localidad(k):
+    """
+    Devuelve la localidad cuya clave es k en la colección de localidades.
+
+    Lanza una excepción KeyError si la localidad con clave k no existe.
+    """
+    return coleccion.elemento(_localidades, k)
