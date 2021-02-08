@@ -1,18 +1,10 @@
-"""
-TAD Localidad:
+class Localidad:
+    def __init__(self, corta, larga):
+        self.__corta = corta
+        self.__larga = larga
 
-- Generadora:
-    - localidad(corta: str, larga: str) -> Localidad
-- Selectoras:
-    - corta(loc: Localidad) -> str
-    - larga(loc: Localidad) -> str
-"""
+    def corta(self):
+        return self.__corta
 
-def localidad(corta, larga):
-    return [corta, larga]
-
-def corta(loc):
-    return loc[0]
-
-def larga(loc):
-    return loc[1]
+    def larga(self):
+        return self.__larga
