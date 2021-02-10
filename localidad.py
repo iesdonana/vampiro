@@ -1,8 +1,7 @@
 class Localidad:
-    def __init__(self, corta, larga, conexiones):
+    def __init__(self, corta, larga):
         self.set_corta(corta)
         self.set_larga(larga)
-        self.set_conexiones(conexiones)
 
     def corta(self):
         return self.__corta

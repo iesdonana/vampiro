@@ -13,32 +13,29 @@ TAD Coleccion: colección de elementos a los que se puede acceder
     - quitar(c: Coleccion, k: Clave)
 """
 
-def coleccion():
-    """Devuelve una colección vacía."""
-    return {}
+class Coleccion:
+    def __init__(self):
+        """Inicializa la colección."""
+        self.__coleccion = {}
 
-def elemento(c, k):
-    """
-    Devuelve el elemento cuya clave es k de la colección c.
+    def elemento(self, k):
+        """
+        Devuelve el elemento cuya clave es k.
 
-    Lanza una excepción KeyError si la clave k no está en c.
-    """
-    return c[k]
+        Lanza una excepción KeyError si la clave k no está.
+        """
+        return self.__coleccion[k]
 
-def insertar(c, k, e):
-    """
-    Inserta en la colección c el elemento e con la clave k.
+    def set_elemento(self, k, e):
+        """
+        Inserta el elemento e con la clave k.
+        """
+        self.__coleccion[k] = e
 
-    Lanza una excepción KeyError si la clave k ya existe en c.
-    """
-    if k in c:
-        raise KeyError('La clave ya existe en la colección.')
-    c[k] = e
+    def del_elemento(self, k):
+        """
+        Quita de la colección elemento con clave k.
 
-def quitar(c, k):
-    """
-    Quita de la colección c el elemento con clave k.
-
-    Lanza una excepción KeyError si la clave k no existe en c.
-    """
-    del c[k]
+        Lanza una excepción KeyError si la clave k no existe.
+        """
+        del self.__coleccion[k]
