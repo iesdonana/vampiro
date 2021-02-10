@@ -1,7 +1,11 @@
+from coleccion import Coleccion
+from conexion import Conexion
+
 class Localidad:
     def __init__(self, corta, larga):
         self.set_corta(corta)
         self.set_larga(larga)
+        self.__conexiones = Coleccion()
 
     def corta(self):
         return self.__corta
@@ -19,4 +23,6 @@ class Localidad:
         return self.__conexiones
 
     def set_conexiones(self, conexiones):
-        self.__conexiones = conexiones
+        for direccion, destino in conexiones.items():
+            con = Conexion(direccion, destino)
+            self.__conexiones.set_elemento(direccion, con)

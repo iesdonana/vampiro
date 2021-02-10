@@ -1,18 +1,24 @@
 from localidad import Localidad
-from coleccion import Coleccion
-from conexion import Conexion
 
 vestibulo = Localidad('VESTÍBULO', 'Estás en el vestíbulo del castillo.')
 pasillo = Localidad('PASILLO', 'Te encuentras en el pasillo...')
+cocina = Localidad('COCINA', 'Estás en la cocina...')
+biblioteca = Localidad('BIBLIOTECA', 'La biblioteca del castillo...')
 
-al_pasillo = Conexion('NORTE', pasillo)
-al_vestibulo = Conexion('SUR', vestibulo)
+vestibulo.set_conexiones({
+    'NORTE': pasillo
+})
 
-cs1 = Coleccion()
-cs1.set_elemento(al_pasillo)
+pasillo.set_conexiones({
+    'SUR': vestibulo,
+    'ESTE': biblioteca,
+    'OESTE': cocina
+})
 
-cs2 = Coleccion()
-cs2.set_elemento(al_vestibulo)
+cocina.set_conexiones({
+    'ESTE': pasillo
+})
 
-vestibulo.set_conexiones(cs1)
-pasillo.set_conexiones(cs2)
+biblioteca.set_conexiones({
+    'OESTE': pasillo
+})
