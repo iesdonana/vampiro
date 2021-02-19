@@ -26,3 +26,13 @@ class Localidad:
         for direccion, destino in conexiones.items():
             con = Conexion(direccion, destino)
             self.__conexiones.set_elemento(direccion, con)
+
+    def describir(self):
+        print(self.corta())
+        print(self.larga())
+
+    def salida_hacia(self, verbo):
+        try:
+            return self.__conexiones.elemento(verbo)
+        except KeyError:
+            return None

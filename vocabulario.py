@@ -1,3 +1,21 @@
+class Token:
+    def __init__(self, ident):
+        self.__ident = ident
+
+    def __repr__(self):
+        return self.__ident
+
+class Vocabulario:
+    def __init__(self, dic):
+        self.__voc = {}
+        for token, palabras in dic.items():
+            for palabra in palabras:
+                self.__voc[palabra] = token
+
+    def token(self, palabra):
+        return self.__voc.get(palabra)
+
+
 PALABRA_VERBO = 0
 PALABRA_NOMBRE = 1
 

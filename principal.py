@@ -1,22 +1,24 @@
-import interprete
-import jugador
+from interprete import Interprete
+from mapeado import *
+from jugador import Jugador
 
+jugador = Jugador(vestibulo)
 jugador.describe_localidad_actual()
 
 while True:
     orden = input('> ')
-    interprete.interpretar(orden)
-    if interprete.hay_error_sintactico():
+    Interprete.interpretar(orden)
+    if Interprete.hay_error_sintactico():
         print('No entiendo lo que quieres decirme.')
-    elif interprete.verbo_es_direccion():
-        if not jugador.intentar_mover(interprete.verbo()):
+    elif Interprete.verbo_es_direccion():
+        if not jugador.intentar_mover(Interprete.verbo()):
             print('No hay salida en esa dirección.')
-    elif interprete.verbo() in ['FIN', 'ACABAR']:
-        if interprete.nombre() is None:
+    elif Interprete.verbo() in ['FIN', 'ACABAR']:
+        if Interprete.nombre() is None:
             print('Hasta luego, Lucas.')
             break
         else:
             print('No entiendo lo que quieres decirme')
     else:
-        print('Verbo:', interprete.verbo())
-        print('Nombre:', interprete.nombre())
+        print('Verbo:', Interprete.verbo())
+        print('Nombre:', Interprete.nombre())
