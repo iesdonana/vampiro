@@ -1,6 +1,7 @@
 from interprete import Interprete
 from mapeado import *
 from jugador import Jugador
+import vocabulario as voc
 
 jugador = Jugador(vestibulo)
 jugador.describe_localidad_actual()
@@ -13,7 +14,7 @@ while True:
     elif Interprete.verbo_es_direccion():
         if not jugador.intentar_mover(Interprete.verbo()):
             print('No hay salida en esa dirección.')
-    elif Interprete.verbo() in ['FIN', 'ACABAR']:
+    elif Interprete.verbo() == voc.ACABAR:
         if Interprete.nombre() is None:
             print('Hasta luego, Lucas.')
             break

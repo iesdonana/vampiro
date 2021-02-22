@@ -64,25 +64,24 @@ class Interprete:
 
     @staticmethod
     def verbo_es_direccion():
-        return voc.es_direccion(Interprete.__verbo)
+        return isinstance(Interprete.__verbo, voc.Direccion)
 
     @staticmethod
     def __buscar_verbo_primera_palabra(lista):
-        for palabra in voc.palabras:
-            if lista[0] == palabra[0]:
-                if palabra[1] == voc.VERBO:
-                    Interprete.__verbo = lista[0]
-                    Interprete.__nombre = None
-                elif palabra[1] == voc.NOMBRE:
-                    Interprete.marcar_error_sintactico()
-                    Interprete.__nombre = None
-                break
+        token = voc.Token.get_token(lista[0])
+        if token is not None:
+            if isinstance(token, voc.Verbo):
+                Interprete.__verbo = token
+                Interprete.__nombre = None
+            elif isinstance(token, voc.Nombre):
+                Interprete.marcar_error_sintactico()
+                Interprete.__nombre = None
 
     @staticmethod
     def __buscar_nombre_segunda_palabra(lista):
-        for palabra in voc.palabras:
-            if lista[1] == palabra[0]:
-                if palabra[1] == voc.NOMBRE:
-                    Interprete.__nombre = lista[1]
-                else:
-                    Interprete.marcar_error_sintactico()
+        token = voc.Token.get_token(lista[1])
+        if token is not None:
+            if isinstance(token, voc.Nombre):
+                Interprete.__nombre = token
+            else:
+                Interprete.marcar_error_sintactico()
