@@ -1,3 +1,5 @@
+from vocabulario import Token
+
 class Conexion:
     def __init__(self, direccion, destino):
         self.__direccion = direccion

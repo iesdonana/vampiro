@@ -3,6 +3,15 @@ class Coleccion:
         """Inicializa la colección."""
         self.__coleccion = {}
 
+    def __iter__(self):
+        return iter(self.__coleccion)
+
+    def __len__(self):
+        return len(self.__coleccion)
+
+    def itera_valores(self):
+        return iter(self.__coleccion.values())
+
     def elemento(self, k):
         """
         Devuelve el elemento cuya clave es k.
@@ -24,3 +33,23 @@ class Coleccion:
         Lanza una excepción KeyError si la clave k no existe.
         """
         del self.__coleccion[k]
+
+
+class ColeccionConexiones(Coleccion):
+    def __iter__(self):
+        return self.itera_valores()
+
+    def anyadir_conexion(self, con):
+        self.set_elemento(con.direccion(), con)
+
+    def salida_hacia(self, verbo):
+        try:
+            return self.elemento(verbo)
+        except KeyError:
+            return None
+
+    def describir_salidas(self):
+        ret = []
+        for conexion in self:
+            ret.append(str(conexion.direccion()))
+        return 'Salidas: ' + ', '.join(ret)

@@ -3,7 +3,7 @@ from mapeado import *
 from jugador import Jugador
 import vocabulario as voc
 
-jugador = Jugador(vestibulo)
+jugador = Jugador(pasillo)
 jugador.describe_localidad_actual()
 
 while True:

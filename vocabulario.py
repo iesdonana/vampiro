@@ -6,7 +6,7 @@ class Token:
         for lexema in lexemas:
             Token.__tokens[lexema] = self
 
-    def __repr__(self):
+    def __str__(self):
         return self.__ident
 
     @staticmethod
